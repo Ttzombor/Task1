@@ -3,9 +3,9 @@
 class View{
 
     //Template view you can choose;
-    public $template_view;
+    public $template_view = "template_view.php";
 
-    function generate($content_view,$template_view, $data){
+    function generate($content_view,$template_view, $data = null){
         if(!$data && is_array($data)){
             extract(($data));
         }

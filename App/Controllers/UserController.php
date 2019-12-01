@@ -3,9 +3,22 @@
 
 class UserController extends Controller
 {
+
+    public function __construct($db)
+    {
+        if($db) echo "\n db";
+        $this->model = new User($db);
+        $this->view = new View();
+    }
+
     public function index()
     {
-        $this->view->generate('index_view.php', 'template_view.php');
+        $data = $this->model->getAll();
+
+        foreach ($data as $var){
+            echo $var['id'];
+        }
+        $this->view->generate('index_view.php', 'template_view.php', $data);
     }
 
     public function edit($id = null)

@@ -6,7 +6,6 @@ class UserController extends Controller
 
     public function __construct($db)
     {
-        if($db) echo "\n db";
         $this->model = new User($db);
         $this->view = new View();
     }
@@ -15,9 +14,6 @@ class UserController extends Controller
     {
         $data = $this->model->getAll();
 
-        foreach ($data as $var){
-            echo $var['id'];
-        }
         $this->view->generate('index_view.php', 'template_view.php', $data);
     }
 

@@ -30,7 +30,4 @@ class Database
         return $this->dbConnection;
     }
 
-    public function Query(){
-
-}
 }

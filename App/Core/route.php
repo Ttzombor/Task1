@@ -56,7 +56,7 @@ class Route{
             include "App/Controllers/" . $controller_file;
 
             $dbConnection = (new Database())->getConnection();
-            if($dbConnection)echo "ura";
+
             //Creating Controllers
             $controller = new $controller_name($dbConnection);
             $action = $action_name;

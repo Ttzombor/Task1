@@ -31,22 +31,24 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td class="text-">1</td>
-            <td>Lorem</td>
-            <td>ipsum</td>
-            <td>dolor</td>
-            <td>sit</td>
-            <td >
+        <?php foreach($data as $var){
+            echo '<tr>';
+            echo '<td>'.$var['id'].'</td>';
+            echo '<td>'.$var['surname'].'</td>';
+            echo '<td>'.$var['firstname'].'</td>';
+            echo '<td>'.$var['phone'].'</td>';
+            echo '<td>'.$var['address'].'</td>';
+            echo '<td >
                 <a class="btn btn-default" href="/user/edit">
                     <i>Edit</i>
                 </a>
-
                 <button type="submit" class="btn" href="/user/delete">
                     <i >Delete</i>
                 </button>
             </td>
         </tr>
+            
+        </tr>';}?>
         </tbody>
         <tfoot>
         <tr>

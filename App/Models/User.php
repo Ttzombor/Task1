@@ -1,25 +1,17 @@
 <?php
-
-
-
 class User extends Model{
-
     public $db;
-
     public function __construct($database)
     {
         $this->db = $database;
     }
-
     public function getAll(){
-
         $statement = "
             SELECT 
                 id, surname, firstname, phone, address
             FROM
                 user;
                 ";
-
         try{
             $statement = $this->db->query($statement);
             $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
@@ -27,9 +19,7 @@ class User extends Model{
         }catch (\PDOException $e) {
             exit($e->getMessage());
         }
-
     }
-
     public function getById($id){
         $statement = "
             SELECT 
@@ -47,7 +37,6 @@ class User extends Model{
             exit($e->getMessage());
         }
     }
-
     public function delete($id){
         $statement = "
             DELETE
@@ -64,5 +53,4 @@ class User extends Model{
             exit($e->getMessage());
         }
     }
-
 }

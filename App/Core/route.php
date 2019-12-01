@@ -8,7 +8,7 @@ class Route{
     static function start(){
 
         //Default
-        $controller_name = "Main";
+        $controller_name = "User";
         $action_name = "index";
 
         /*Request_uri is the full name path
@@ -27,9 +27,8 @@ class Route{
         }
 
         //Adding prefix
-        $model_name = 'Model_'.$controller_name;
-        $controller_name = 'Controller_'.$controller_name;
-        $action_name = 'action_'.$action_name;
+        $model_name = ucfirst($controller_name);
+        $controller_name = ucfirst($controller_name).'Controller';
 
         /*echo "Model: $model_name ";
         echo "Controller: $controller_name ";
@@ -47,7 +46,7 @@ class Route{
         $controller_file = $controller_name.'.php';
         $controller_path = "App/Controllers/".$controller_file;
 
-        /*echo $controller_path;*/
+        echo $controller_path;
 
         if(file_exists($controller_path)) {
             include "App/Controllers/" . $controller_file;

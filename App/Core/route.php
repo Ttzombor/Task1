@@ -63,17 +63,16 @@ class Route{
 
             if (method_exists($controller, $action)) {
                 //Controllers's action
-                if( $requestMethod = "POST" && isset($_POST['edit'])){
-
+                print_r($_POST);
+                if($requestMethod = "POST" && isset($_POST['create']))
+                    $controller->$action($_POST);
+                elseif($requestMethod = "POST" && isset($_POST['edit']))
                     $controller->$action($_POST, $_POST['id']);
-                }
-                elseif( $requestMethod = "POST" && isset($_POST['id'])){
-                    echo $_POST['id'];
-                    $controller->$action($_POST['id']);}
+                elseif($requestMethod = "POST" && isset($_POST['id']))
+                    $controller->$action($_POST['id']);
                 else
                     $controller->$action();
             } else {
-
                 Route::ErrorPage(404);
             }
         } else{

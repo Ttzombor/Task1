@@ -13,17 +13,17 @@ $statement = <<<EOS
 
     INSERT INTO user
 
-        (id, surname, firstname, phone, address)
+        (surname, firstname, phone, address)
     VALUES
-        (1, 'Krasimir', 'Hristozov', 1, null),
-        (2, 'Maria', 'Hristozova', 2, null),
-        (3, 'Masha', 'Hristozova', 3, 'address'),
-        (4, 'Jane', 'Smith', 2, null),
-        (5, 'John', 'Smith', 3, null),
-        (6, 'Richard', 'Smith', 4, 'address'),
-        (7, 'Donna', 'Smith', 4, 'address'),
-        (8, 'Josh', 'Harrelson', 3, null),
-        (9, 'Anna', 'Harrelson', 7, 'address');
+        ( 'Krasimir', 'Hristozov', 1, null),
+        ( 'Maria', 'Hristozova', 2, null),
+        ( 'Masha', 'Hristozova', 3, 'address'),
+        ( 'Jane', 'Smith', 2, null),
+        ( 'John', 'Smith', 3, null),
+        ( 'Richard', 'Smith', 4, 'address'),
+        ( 'Donna', 'Smith', 4, 'address'),
+        ( 'Josh', 'Harrelson', 3, null),
+        ( 'Anna', 'Harrelson', 7, 'address');
 EOS;
 
 try {

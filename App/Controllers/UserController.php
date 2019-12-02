@@ -28,16 +28,28 @@ class UserController extends Controller
 
         $this->model->update($request, $id);
 
-
+        $this->view->redirectToMain();
     }
 
-    public function create($request)
+    public function create()
     {
+
         $this->view->generate('create_view.php', 'template_view.php');
+    }
+
+    public function store($request)
+    {
+        $this->model->create($request);
+
+        //print_r($this->model->create($request));
+
+        $this->view->redirectToMain();
     }
 
     public function delete($id)
     {
-        echo "Delete user".$id;
+        $this->model->delete($id);
+
+        $this->view->redirectToMain();
     }
 }

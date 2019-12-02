@@ -2,7 +2,7 @@
     <h1 class="h2">Dashboard</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
-            <form action="user/create_view.php">
+            <form method="post" action="/user/create">
             <button type="submit" class="btn btn-sm btn-outline-secondary" >Create User</button>
             </form>
             <button type="button" class="btn btn-sm btn-outline-secondary">Import</button>
@@ -45,6 +45,7 @@
                     <input type="text" value='.$var['id'].' name="id" hidden/>
                 </a>
                 </button>
+                </form>
              <form method="POST" action="/user/delete">   <button type="submit" class="btn"  value="Delete">
                     <i >Delete</i>
                     <input type="text" value='.$var['id'].' name="id" hidden/>

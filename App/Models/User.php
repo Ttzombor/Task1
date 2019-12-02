@@ -38,6 +38,29 @@ class User extends Model{
             exit($e->getMessage());
         }
     }
+
+    public function create($request){
+        $statement = "
+            INSERT INTO user
+                 (surname, firstname, phone, address)
+                 VALUES
+                (:surname, :firstname, :phone, :address)
+        ";
+
+        try {
+            $statement = $this->db->prepare($statement);
+            $statement->execute(array(
+                'surname' => $request['surname'],
+                'firstname' => $request['firstname'],
+                'phone' => $request['phone'] ?? null,
+                'address' => $request['address'] ?? null,
+            ));
+            echo "Succsesfuly saved";
+        } catch (\PDOException $e) {
+            exit($e->getMessage());
+        }
+    }
+
     public function update($request, $id){
         $statement = "
             UPDATE user
@@ -73,7 +96,7 @@ class User extends Model{
                 ";
         try{
             $statement = $this->db->prepare($statement);
-            $statement->execute($id);
+            $statement->execute(array('id' => $id));
             $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
             return $result;
         }catch (\PDOException $e) {

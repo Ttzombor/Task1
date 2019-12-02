@@ -12,4 +12,8 @@ class View{
 
         include 'App/Views/'.$template_view;
     }
+
+    function redirectToMain(){
+        header('Location:/');
+    }
 }

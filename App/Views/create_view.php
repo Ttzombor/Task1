@@ -1,5 +1,5 @@
 
-<form method="POST" action="../Controllers/UserController.php">
+<form method="POST" action="/user/store">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -22,15 +22,16 @@
                                     <label for="">Surname</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="title"
+                                           name="surname"
                                            placeholder="User's surname"
                                            value="" required>
+                                    <input name="create" value="1" hidden/>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Name</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="title"
+                                           name="firstname"
                                            placeholder="User's name"
                                            value="" required>
                                 </div>
@@ -45,9 +46,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Address</label>
-                                    <input type="address"
+                                    <input type="text"
                                            class="form-control"
-                                           name="title"
+                                           name="address"
                                            placeholder="User's address..."
                                            value="">
                                 </div>

@@ -4,6 +4,8 @@ class User extends Model{
     public function __construct($database)
     {
         $this->db = $database;
+        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     }
     public function getAll(){
         $statement = "

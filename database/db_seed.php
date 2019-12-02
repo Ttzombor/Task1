@@ -1,13 +1,13 @@
 <?php
 require_once 'Database.php';
 
-$statement = <<<EOS
+$statement = "
     CREATE TABLE IF NOT EXISTS user (
         id INT NOT NULL AUTO_INCREMENT,
-        surname VARCHAR(100) NOT NULL,
-        firstname VARCHAR(100) NOT NULL,
-        phone INT NOT NULL,
-        address VARCHAR(100) NULL,
+        surname VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+        firstname VARCHAR(100)CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+        phone VARCHAR(100)CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+        address VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
         PRIMARY KEY (id)
     ) ENGINE=INNODB;
 
@@ -24,7 +24,7 @@ $statement = <<<EOS
         ( 'Donna', 'Smith', 4, 'address'),
         ( 'Josh', 'Harrelson', 3, null),
         ( 'Anna', 'Harrelson', 7, 'address');
-EOS;
+";
 
 try {
     $createTable = (new Database())->getConnection()->exec($statement);

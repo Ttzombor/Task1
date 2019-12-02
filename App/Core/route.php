@@ -63,7 +63,11 @@ class Route{
 
             if (method_exists($controller, $action)) {
                 //Controllers's action
-                if ( $requestMethod = "POST" && isset($_POST['id'])){
+                if( $requestMethod = "POST" && isset($_POST['edit'])){
+
+                    $controller->$action($_POST, $_POST['id']);
+                }
+                elseif( $requestMethod = "POST" && isset($_POST['id'])){
                     echo $_POST['id'];
                     $controller->$action($_POST['id']);}
                 else

@@ -39,7 +39,7 @@
             echo '<td>'.$var['phone'].'</td>';
             echo '<td>'.$var['address'].'</td>';
             echo '<td >
- <form method="POST" action="/user/delete">   <button type="submit" class="btn"  value="Edit">
+        <form method="POST" action="/user/edit">   <button type="submit" class="btn"  value="Edit">
              <a class="btn btn-default" href="/user/edit">
                     <i>Edit</i>
                     <input type="text" value='.$var['id'].' name="id" hidden/>

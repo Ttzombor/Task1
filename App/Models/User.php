@@ -23,16 +23,43 @@ class User extends Model{
     public function getById($id){
         $statement = "
             SELECT 
-                id, firstname, lastname, firstparent_id, secondparent_id
+                 id, surname, firstname, phone, address
             FROM
                 user
             WHERE id = ?;
                 ";
         try{
             $statement = $this->db->prepare($statement);
-            $statement->execute($id);
+            $statement->execute(array($id));
             $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            /*print_r($result);*/
             return $result;
+        }catch (\PDOException $e) {
+            exit($e->getMessage());
+        }
+    }
+    public function update($request, $id){
+        $statement = "
+            UPDATE user
+                SET
+                    surname = :surname,
+                    firstname = :firstname, 
+                    phone = :phone, 
+                    address = :address
+                WHERE id = :id;
+                ";
+        try{
+            $statement = $this->db->prepare($statement);
+            $statement->execute(array(
+                'id' => (int) $id,
+                'surname' => $request['surname'],
+                'firstname' => $request['firstname'],
+                'phone' => $request['phone'] ?? null,
+                'address' => $request['address'] ?? null,
+
+            ));
+            print_r($statement->rowCount());
+            return $statement->rowCount();
         }catch (\PDOException $e) {
             exit($e->getMessage());
         }

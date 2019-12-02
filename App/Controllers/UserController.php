@@ -17,19 +17,21 @@ class UserController extends Controller
         $this->view->generate('index_view.php', 'template_view.php', $data);
     }
 
-    public function edit($id = null)
+    public function edit($id)
     {
-        $this->view->generate('edit_view.php', 'template_view.php');
+        $data = $this->model->getById($id);
+
+        $this->view->generate('edit_view.php', 'template_view.php', $data);
     }
 
     public function update($request, $id){
-        /*
-         * Store data and return index_view
-         */
-        $this->view->generate('index_view.php', 'template_view.php');
+
+        $this->model->update($request, $id);
+
+
     }
 
-    public function create()
+    public function create($request)
     {
         $this->view->generate('create_view.php', 'template_view.php');
     }

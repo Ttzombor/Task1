@@ -49,7 +49,7 @@ class Route{
 
 
         $requestMethod = $_SERVER["REQUEST_METHOD"];
-        /*echo $requestMethod;*/
+        echo $requestMethod;
 
 
         if(file_exists($controller_path)) {
@@ -63,7 +63,11 @@ class Route{
 
             if (method_exists($controller, $action)) {
                 //Controllers's action
-                $controller->$action();
+                if ( $requestMethod = "POST" && isset($_POST['id'])){
+                    echo $_POST['id'];
+                    $controller->$action($_POST['id']);}
+                else
+                    $controller->$action();
             } else {
 
                 Route::ErrorPage(404);

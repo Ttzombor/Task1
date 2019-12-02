@@ -32,19 +32,24 @@
         </thead>
         <tbody>
         <?php foreach($data as $var){
-            echo '<tr>';
+            echo '<tr >';
             echo '<td>'.$var['id'].'</td>';
             echo '<td>'.$var['surname'].'</td>';
             echo '<td>'.$var['firstname'].'</td>';
             echo '<td>'.$var['phone'].'</td>';
             echo '<td>'.$var['address'].'</td>';
             echo '<td >
-                <a class="btn btn-default" href="/user/edit">
+ <form method="POST" action="/user/delete">   <button type="submit" class="btn"  value="Edit">
+             <a class="btn btn-default" href="/user/edit">
                     <i>Edit</i>
+                    <input type="text" value='.$var['id'].' name="id" hidden/>
                 </a>
-                <button type="submit" class="btn" href="/user/delete">
-                    <i >Delete</i>
                 </button>
+             <form method="POST" action="/user/delete">   <button type="submit" class="btn"  value="Delete">
+                    <i >Delete</i>
+                    <input type="text" value='.$var['id'].' name="id" hidden/>
+                </button>
+                </form>
             </td>
         </tr>
             

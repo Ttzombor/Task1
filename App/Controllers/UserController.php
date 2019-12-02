@@ -34,8 +34,8 @@ class UserController extends Controller
         $this->view->generate('create_view.php', 'template_view.php');
     }
 
-    public function delete($id = null)
+    public function delete($id)
     {
-        echo "Delete user $id";
+        echo "Delete user".$id;
     }
 }

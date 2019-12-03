@@ -9,7 +9,7 @@ class Database
         $host = 'localhost';
         $port = 3306;
         $db = 'PhoneBook';
-        $user = 'root';
+        $user = 'user';
         $pass = 12345;
 
         try {

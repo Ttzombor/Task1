@@ -94,7 +94,6 @@ class Route{
                     }
                 }
                 else {
-                    echo "WTFF";
                     $controller->$action();
                 }
 

@@ -1,5 +1,5 @@
 <?php
-class Controller{
+abstract class Controller {
 
     public $model;
     public $view;
@@ -9,8 +9,5 @@ class Controller{
         $this->view = new View();
     }
 
-    function action_index(){
-
-    }
 
 }

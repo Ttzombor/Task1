@@ -1,9 +1,5 @@
 <?php
 class Route{
-    /*
-     *
-     */
-
 
     public static function start(){
 
@@ -64,19 +60,45 @@ class Route{
             if (method_exists($controller, $action)) {
                 //Controllers's action should use switch
                 print_r($_POST);
-                if($requestMethod = "POST" && isset($_POST['search']))
-                    $controller->$action($_POST);
-                elseif($requestMethod = "POST" && isset($_POST['Import']))
-                    $controller->$action($_FILES);
-                elseif($requestMethod = "POST" && isset($_POST['create']) or
-                    $requestMethod = "POST" && isset($_POST['orderBy']))
-                    $controller->$action($_POST);
-                elseif($requestMethod = "POST" && isset($_POST['edit']))
-                    $controller->$action($_POST, $_POST['id']);
-                elseif($requestMethod = "POST" && isset($_POST['id']))
-                    $controller->$action($_POST['id']);
-                else
+                if($_POST) {
+                    switch ($_POST) {
+
+                        case (isset($_POST['update'])):
+                            {
+                                if (isset($_POST['id']))
+                                    $controller->$action($_POST, $_POST['id']);
+                            }
+                            break;
+                        case (isset($_POST['orderBy'])):
+                            $controller->$action($_POST);
+                            break;
+                        case (isset($_POST['create'])):
+                            $controller->$action($_POST);
+                            break;
+                        case (isset($_POST['Import'])):
+                            $controller->$action($_FILES);
+                            break;
+                        case (isset($_POST['search'])):
+                            $controller->$action($_POST);
+                            break;
+                        case (isset($_POST['id'])):
+                            {
+                                if (isset($_POST['id']))
+                                    $controller->$action($_POST['id']);
+                            }
+                            break;
+
+                        default:
+                            $controller->$action();
+                            break;
+                    }
+                }
+                else {
+                    echo "WTFF";
                     $controller->$action();
+                }
+
+
             } else {
                 Route::ErrorPage(404);
             }

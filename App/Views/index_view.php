@@ -53,11 +53,12 @@
             echo '<td>'.$var['phone'].'</td>';
             echo '<td>'.$var['address'].'</td>';
             echo '<td >
-        <form method="POST" action="/user/edit/'.$var['id'].'">   <button type="submit" class="btn"  value="Edit">
-             <a class="btn btn-default" href="/user/edit">
+        <form method="POST" action="/user/edit/'.$var['id'].'">  
+         <button type="submit" class="btn"  value="edit">
+             
                     <i>Edit</i>
                     <input type="text" value='.$var['id'].' name="id" hidden/>
-                </a>
+               
                 </button>
                 </form>
                 </td>

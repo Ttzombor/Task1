@@ -1,5 +1,5 @@
 
-<form method="POST" action="/user/update">
+<form method="POST" action="/user/update" name="update">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -24,7 +24,7 @@
                                        class="form-control"
                                        name="surname"
                                        value="<?php echo $data[0]['surname'];?>" required>
-                                <input name="edit" value="1" hidden/>
+                                <input name="update" value="1" hidden/>
                                 <input name="id" value="<?php echo $data[0]['id'];?>" hidden/>
                             </div>
                             <div class="form-group">
@@ -36,7 +36,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Phone</label>
-                                <input type="number"
+                                <input type="text"
                                        class="form-control"
                                        name="phone"
                                        placeholder="User's phone..."
@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Address</label>
-                                <input type="address"
+                                <input type="text"
                                        class="form-control"
                                        name="address"
                                        placeholder="No address..."
@@ -57,6 +57,6 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-primary" type="submit">Save</button>
+    <button class="btn btn-primary" type="submit" value="edit">Save</button>
 </form>
 

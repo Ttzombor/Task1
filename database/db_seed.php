@@ -15,15 +15,15 @@ $statement = "
 
         (surname, firstname, phone, address)
     VALUES
-        ( 'Krasimir', 'Hristozov', 1, null),
-        ( 'Maria', 'Hristozova', 2, null),
-        ( 'Masha', 'Hristozova', 3, 'address'),
-        ( 'Jane', 'Smith', 2, null),
-        ( 'John', 'Smith', 3, null),
-        ( 'Richard', 'Smith', 4, 'address'),
-        ( 'Donna', 'Smith', 4, 'address'),
-        ( 'Josh', 'Harrelson', 3, null),
-        ( 'Anna', 'Harrelson', 7, 'address');
+        ( 'Tibor', 'Heroy', '+38066091202', 'address'),
+        ( 'Tibor', 'Gero', '+38066000202', 'address_1'),
+        ( 'Masha', 'Hristozova', '+38066000202', 'address'),
+        ( 'Jane', 'Smith', '+38066091302', null),
+        ( 'John', 'Smith', '+38066091303', null),
+        ( 'Richard', 'Smith', '+38066091003', 'address_3'),
+        ( 'Donna', 'Smith', '+38066091000', 'address_3'),
+        ( 'Josh', 'Harrelson', '+38063091003', 'address_4'),
+        ( 'Anna', 'Harrelson', '+38063091003', 'address_4');
 ";
 
 try {

@@ -19,7 +19,6 @@ class Database
                 $pass
             );
 
-            echo "\n Connectede!";
         } catch (\PDOException $e) {
             exit($e->getMessage());
         }

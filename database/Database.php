@@ -4,6 +4,9 @@ class Database
 
     private $dbConnection = null;
 
+    /**
+     * Database constructor.
+     */
     public function __construct()
     {
         $host = 'localhost';
@@ -24,6 +27,10 @@ class Database
         }
     }
 
+    /**
+     *  Returning the connection with PDO
+     * @return PDO|null
+     */
     public function getConnection()
     {
         return $this->dbConnection;

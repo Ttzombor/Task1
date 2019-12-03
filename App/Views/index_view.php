@@ -45,7 +45,11 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach($data as $var){
+        <?php /**
+         * Passing $data from View.php to show all Users
+         * @param $data
+         */
+            foreach($data as $var){
             echo '<tr >';
             echo '<td>'.$var['id'].'</td>';
             echo '<td>'.$var['surname'].'</td>';

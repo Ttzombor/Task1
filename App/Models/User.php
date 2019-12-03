@@ -1,12 +1,26 @@
 <?php
-class User extends Model{
+class User extends Model
+{
     public $db;
+
+    /**
+     * User's gateway to Database.
+     * Should use this gateway as addition file called Repository.
+     * User constructor.
+     * @param $database
+     */
     public function __construct($database)
     {
         $this->db = $database;
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     }
+
+    /**
+     * Get all data from Database
+     * @return mixed
+     */
+
     public function getAll(){
         $statement = "
             SELECT 
@@ -22,6 +36,12 @@ class User extends Model{
             exit($e->getMessage());
         }
     }
+
+    /**
+     * Get One Array from Database
+     * @param $id
+     * @return mixed
+     */
     public function getById($id){
         $statement = "
             SELECT 
@@ -41,6 +61,10 @@ class User extends Model{
         }
     }
 
+    /**
+     * Creating User with $request data's
+     * @param $request
+     */
     public function create($request){
         $statement = "
             INSERT INTO user
@@ -63,6 +87,12 @@ class User extends Model{
         }
     }
 
+    /**
+     * Updating edited user.
+     * @param $request
+     * @param $id
+     * @return mixed
+     */
     public function update($request, $id){
         $statement = "
             UPDATE user
@@ -89,6 +119,10 @@ class User extends Model{
             exit($e->getMessage());
         }
     }
+    /**
+     * Deleting User from Database
+     * @param $id
+     */
     public function delete($id){
         $statement = "
             DELETE
@@ -104,6 +138,12 @@ class User extends Model{
         }
     }
 
+    /**
+     * Ordering By ASC
+     *
+     * @param $request
+     * @return mixed
+     */
     public function orderBy($request){
         $statement = "
             SELECT 
@@ -121,6 +161,12 @@ class User extends Model{
             exit($e->getMessage());
         }
     }
+
+    /**
+     * Searching for request in database
+     * @param $request
+     * @return mixed
+     */
     public function find($request)
     {
         $statement = "SELECT 
@@ -150,14 +196,16 @@ class User extends Model{
          }
 
 
+    /**
+     * Importing File to Database
+     * @param $request
+     */
     public function saveFile($request)
     {
         $filename = $request["file"]["tmp_name"];
         $temp = explode('.', $request['file']['name']);
         $extn = strtolower(end($temp));
 
-        print_r($temp);
-        print_r($extn);
         if (($extn == "csv") || ($extn == "xlsx")) {
             if ($request["file"]["size"] > 0) {
                 $file = fopen($filename, "r");
@@ -174,13 +222,12 @@ class User extends Model{
                         'phone' => $getData[2] ?? null,
                         'address' => $getData[3] ?? null,
                     ));
-
                 }
-
                 echo "<script type=\"text/javascript\">
-            alert(\"CSV File has been successfully Imported.\");
-            window.location = \"filemanager\"
-          </script>";
+                alert(\"CSV File has been successfully Imported.\");
+                window.location = \"filemanager\"
+                 </script>";
+
                 fclose($file);
             }
         }
@@ -192,6 +239,9 @@ class User extends Model{
             }
         }
 
+    /**
+     * Exporting CSV type file of Database
+     */
     public function exportFile()
     {
         header('Content-Type: text/csv; charset=utf-8');

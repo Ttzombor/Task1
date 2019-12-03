@@ -1,7 +1,7 @@
 <?php
 
 include "database/Database.php";
-//Connect Cores
+
 require_once 'Core/Model.php';
 require_once 'Core/View.php';
 require_once 'Core/Controller.php';

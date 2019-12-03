@@ -1,6 +1,11 @@
 <?php
 class Route{
 
+    /**
+     *  Start method is the begging of app and
+     *  the processor of the app.
+     *  This should be overwriten in methods and classes.
+     */
     public static function start(){
 
         //Default
@@ -22,15 +27,11 @@ class Route{
             $action_name = $routes[2];
         }
 
-        //Adding prefix
+        //Get Controller name: UserController
         $model_name = ucfirst($controller_name);
         $controller_name = ucfirst($controller_name).'Controller';
 
-        /*echo "Model: $model_name ";
-        echo "Controller: $controller_name ";
-        echo "Action: $action_name ";*/
-
-        //File -> Models
+        //Path to Model File
         $model_file = $model_name.'.php';
         $model_path = "App/Models/".$model_file;
 
@@ -39,15 +40,11 @@ class Route{
             include "App/Models/".$model_file;
         }
 
+        //Path to Controller File
         $controller_file = $controller_name.'.php';
         $controller_path = "App/Controllers/".$controller_file;
 
-
-
-        $requestMethod = $_SERVER["REQUEST_METHOD"];
-        /*echo $requestMethod;*/
-
-
+        //Processing the app
         if(file_exists($controller_path)) {
             include "App/Controllers/" . $controller_file;
 
@@ -57,56 +54,44 @@ class Route{
             $controller = new $controller_name($dbConnection);
             $action = $action_name;
 
+            //Routing
             if (method_exists($controller, $action)) {
-                //Controllers's action should use switch
-                print_r($_POST);
+
                 if($_POST) {
                     switch ($_POST) {
-
                         case (isset($_POST['update'])):
                             {
                                 if (isset($_POST['id']))
                                     $controller->$action($_POST, $_POST['id']);
                             }
                             break;
-                        case (isset($_POST['orderBy'])):
-                            $controller->$action($_POST);
-                            break;
-                        case (isset($_POST['create'])):
-                            $controller->$action($_POST);
-                            break;
-                        case (isset($_POST['Import'])):
-                            $controller->$action($_FILES);
-                            break;
-                        case (isset($_POST['search'])):
-                            $controller->$action($_POST);
-                            break;
+                        case (isset($_POST['orderBy'])): $controller->$action($_POST); break;
+                        case (isset($_POST['create'])): $controller->$action($_POST); break;
+                        case (isset($_POST['Import'])): $controller->$action($_FILES); break;
+                        case (isset($_POST['search'])): $controller->$action($_POST); break;
                         case (isset($_POST['id'])):
                             {
                                 if (isset($_POST['id']))
                                     $controller->$action($_POST['id']);
                             }
                             break;
-
                         default:
                             $controller->$action();
                             break;
                     }
                 }
-                else {
-                    $controller->$action();
-                }
-
-
-            } else {
-                Route::ErrorPage(404);
-            }
-        } else{
-            Route::ErrorPage(405);
-
+                else $controller->$action();
+            } else Route::ErrorPage(404);
         }
-
+        else{
+            Route::ErrorPage(405);
+        }
     }
+
+    /**
+     *  ErrorPage.
+     * @param $num_error
+     */
     static function ErrorPage($num_error){
         if($num_error == 404) echo "404";
         if($num_error == 405) echo "405";

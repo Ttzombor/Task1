@@ -23,7 +23,12 @@
                                 <input type="text"
                                        class="form-control"
                                        name="surname"
-                                       value="<?php echo $data[0]['surname'];?>" required>
+                                       value="<?php
+                                       /** Passing to Edit_view params for editing them
+                                        * @param $data
+                                        */
+                                        echo $data[0]['surname'];
+                                       ?>" required>
                                 <input name="update" value="1" hidden/>
                                 <input name="id" value="<?php echo $data[0]['id'];?>" hidden/>
                             </div>
@@ -32,7 +37,11 @@
                                 <input type="text"
                                        class="form-control"
                                        name="firstname"
-                                       value="<?php echo $data[0]['firstname'];?>" required>
+                                       value="<?php
+                                       /**
+                                        * @param $data
+                                        */
+                                       echo $data[0]['firstname']; ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Phone</label>
@@ -40,7 +49,10 @@
                                        class="form-control"
                                        name="phone"
                                        placeholder="User's phone..."
-                                       value="<?php echo $data[0]['phone'];?>"
+                                       value="<?php
+                                       /**
+                                        * @param $data
+                                        */ echo $data[0]['phone'];?>"
                                        required>
                             </div>
                             <div class="form-group">
@@ -49,7 +61,10 @@
                                        class="form-control"
                                        name="address"
                                        placeholder="No address..."
-                                       value="<?php echo $data[0]['address'];?>">
+                                       value="<?php
+                                       /**
+                                        * @param $data
+                                        */ echo $data[0]['address'];?>">
                             </div>
                         </div>
                     </div>

@@ -52,4 +52,27 @@ class UserController extends Controller
 
         $this->view->redirectToMain();
     }
+
+    public function orderBy($request){
+        $data = $this->model->orderBy($request);
+        //print_r($data);
+        $this->view->generate('index_view.php', 'template_view.php', $data);
+    }
+
+    public function filemanager(){
+        $this->view->generate('filemanager_view.php', 'template_view.php');
+    }
+
+    public function import($request){
+
+        $this->model->saveFile($request);
+
+        $this->view->redirectToMain();
+    }
+    public function export(){
+
+        $this->model->exportFile();
+
+        //$this->view->redirectToMain();
+    }
 }

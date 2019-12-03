@@ -49,7 +49,7 @@ class Route{
 
 
         $requestMethod = $_SERVER["REQUEST_METHOD"];
-        echo $requestMethod;
+        /*echo $requestMethod;*/
 
 
         if(file_exists($controller_path)) {
@@ -62,9 +62,12 @@ class Route{
             $action = $action_name;
 
             if (method_exists($controller, $action)) {
-                //Controllers's action
-                print_r($_POST);
-                if($requestMethod = "POST" && isset($_POST['create']))
+                //Controllers's action should use switch
+
+                if($requestMethod = "POST" && isset($_POST['Import']))
+                    $controller->$action($_FILES);
+                elseif($requestMethod = "POST" && isset($_POST['create']) or
+                    $requestMethod = "POST" && isset($_POST['orderBy']))
                     $controller->$action($_POST);
                 elseif($requestMethod = "POST" && isset($_POST['edit']))
                     $controller->$action($_POST, $_POST['id']);

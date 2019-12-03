@@ -105,4 +105,88 @@ class User extends Model{
             exit($e->getMessage());
         }
     }
+
+    public function orderBy($request){
+        $statement = "
+            SELECT 
+                id, surname, firstname, phone, address
+            FROM
+                user
+            ORDER BY ".$request['orderBy']." ASC
+                ";
+        try{
+            $statement = $this->db->prepare($statement);
+            $statement->execute();
+            $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            return $result;
+        }catch (\PDOException $e) {
+            exit($e->getMessage());
+        }
+    }
+
+    public function saveFile($request)
+    {
+        $filename = $request["file"]["tmp_name"];
+        $temp = explode('.', $request['file']['name']);
+        $extn = strtolower(end($temp));
+
+        print_r($temp);
+        print_r($extn);
+        if (($extn == "csv") || ($extn == "xlsx")) {
+            if ($request["file"]["size"] > 0) {
+                $file = fopen($filename, "r");
+                while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
+                    $statement = "INSERT INTO user
+                 (surname, firstname, phone, address)
+                 VALUES
+                (:surname, :firstname, :phone, :address)";
+
+                    $statement = $this->db->prepare($statement);
+                    $statement->execute(array(
+                        'surname' => $getData[0],
+                        'firstname' => $getData[1],
+                        'phone' => $getData[2] ?? null,
+                        'address' => $getData[3] ?? null,
+                    ));
+
+                }
+
+                echo "<script type=\"text/javascript\">
+            alert(\"CSV File has been successfully Imported.\");
+            window.location = \"filemanager\"
+          </script>";
+                fclose($file);
+            }
+        }
+        else {
+                echo "<script type=\"text/javascript\">
+              alert(\"Invalid File:Please Upload CSV or Excel File.\");
+              window.location = \"filemanager\"
+              </script>";
+            }
+        }
+
+    public function exportFile()
+    {
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=data.csv');
+        $output = fopen("php://output", "w");
+        fputcsv($output, array('ID', 'Surname', 'First Name', 'Phone', 'Address'));
+
+        $statement = "
+            SELECT 
+                id, surname, firstname, phone, address
+            FROM
+                user;
+                ";
+        $result = $this->db->prepare($statement);
+        $result->execute();
+
+        while($row = $result->fetch(PDO::FETCH_ASSOC)){
+            fputcsv($output, $row);
+        }
+
+        fclose($output);
+    }
+
 }

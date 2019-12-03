@@ -63,8 +63,10 @@ class Route{
 
             if (method_exists($controller, $action)) {
                 //Controllers's action should use switch
-
-                if($requestMethod = "POST" && isset($_POST['Import']))
+                print_r($_POST);
+                if($requestMethod = "POST" && isset($_POST['search']))
+                    $controller->$action($_POST);
+                elseif($requestMethod = "POST" && isset($_POST['Import']))
                     $controller->$action($_FILES);
                 elseif($requestMethod = "POST" && isset($_POST['create']) or
                     $requestMethod = "POST" && isset($_POST['orderBy']))

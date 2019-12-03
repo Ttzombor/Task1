@@ -75,4 +75,9 @@ class UserController extends Controller
 
         //$this->view->redirectToMain();
     }
+    public function search($request){
+        $data = $this->model->find($request);
+
+        $this->view->generate('index_view.php', 'template_view.php', $data);
+    }
 }

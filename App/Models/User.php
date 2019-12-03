@@ -123,6 +123,34 @@ class User extends Model{
             exit($e->getMessage());
         }
     }
+    public function find($request)
+    {
+        $statement = "SELECT 
+                id, surname, firstname, phone, address
+            FROM
+                user 
+            WHERE    surname LIKE :query OR
+                     firstname LIKE :query OR
+                     phone LIKE :query OR
+                     address LIKE :query
+    ";
+
+             $statement = $this->db->prepare($statement);
+             $statement->execute(array('query' => $request['name']));
+
+             if (!$statement->rowCount() == 0) {
+                 $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
+                 return $results;
+
+             }
+             else {
+                 echo "<script type=\"text/javascript\">
+              alert(\"Nothing found.\");
+              window.location = \"/\"
+              </script>";
+             }
+         }
+
 
     public function saveFile($request)
     {
@@ -188,5 +216,7 @@ class User extends Model{
 
         fclose($output);
     }
+
+
 
 }

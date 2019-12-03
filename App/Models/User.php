@@ -94,13 +94,11 @@ class User extends Model{
             DELETE
             FROM
                 user
-            WHERE id = :id;
+            WHERE id = :id
                 ";
         try{
             $statement = $this->db->prepare($statement);
             $statement->execute(array('id' => $id));
-            $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
-            return $result;
         }catch (\PDOException $e) {
             exit($e->getMessage());
         }

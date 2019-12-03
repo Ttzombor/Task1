@@ -41,7 +41,7 @@
 
     <a class="navbar-brand col-sm-8 mr-0" href="/user">Phone Book</a>
     <input name = "name" class="form-control form-control-dark float-right col-3" type="text" placeholder="Search" aria-label="Search">
-    <button class="btn-primary col-1" value="search" name="search">Go</button>
+    <button class="btn-primary col-1 m-1" value="search" name="search">Go</button>
     <!--
         <a class="btn-link" href="#">Sign in</a>
         <a class="btn-link" href="#">Sign up</a>-->

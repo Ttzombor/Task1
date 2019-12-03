@@ -6,7 +6,7 @@
         <div class="btn-group mr-2">
             <form method="post" action="/user/orderby/" name = "orderBy">
 
-                <select  class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                <select  class="btn btn-sm btn-outline-secondary dropdown-toggle" style="height: 31px"
                 onchange="javascript:this.form.submit()" name="orderBy">
                     <option value="" selected disabled hidden>Order By</option>
                     <option value="id">Id</option>
@@ -18,14 +18,15 @@
             <button type="submit" class="btn btn-sm btn-outline-secondary" >Create User</button>
             </form>
 
-                <a href="/user/filemanager" class="btn btn-sm btn-outline-secondary">
-                Import
-                </a>
+
 
             <form action="/user/export" method="post" name="upload_excel"
                   enctype="multipart/form-data">
                 <button type="submit" class="btn btn-sm btn-outline-secondary">Export</button>
             </form>
+            <a href="/user/filemanager" class="btn btn btn-outline-secondary w-auto " style="height: 31px">
+                Import
+            </a>
 
         </div>
     </div>
